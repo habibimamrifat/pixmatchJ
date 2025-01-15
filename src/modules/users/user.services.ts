@@ -19,12 +19,18 @@ const logIn= async (email:string, password:string) => {
 
 
   // Tokenize user data
-  const tokenizeData = { id: user._id, role: user.role };
+  console.log(user)
+
+  const tokenizeData = {role: user.role };
   const approvalToken = createToken(tokenizeData, config.jwtTokennSecret as string, config.jwtTokennExireIn as string);
   const refreshToken = createToken(tokenizeData, config.jwtRefreshTokenSecret as string, config.jwtRefreshTokennExpireIn as string);
 
   return { approvalToken, refreshToken, approveLogIn: true };
 }
+const getAllUsers = async () => {
+    const result = await userModel.find();
+    return result;
+}
 
-const userServices = { createUser,logIn };
+const userServices = { createUser,logIn ,getAllUsers};
 export default userServices;
