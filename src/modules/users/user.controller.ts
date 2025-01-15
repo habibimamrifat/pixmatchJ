@@ -27,5 +27,10 @@ const logIn = asyncCatch(async (req: Request, res: Response) => {
   });
 });
 
-const userController = { createUser,logIn };
+const getAllUsers = asyncCatch(async (req: Request, res: Response) => {
+const result = await userServices.getAllUsers();
+res.status(200).json(result);
+});
+
+const userController = { createUser,logIn,getAllUsers };
 export default userController;
