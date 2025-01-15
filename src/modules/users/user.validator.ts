@@ -12,4 +12,16 @@ const userValidatorSchema = z.object({
   }),
 });
 
-export default userValidatorSchema;
+const userLogInValidatorSchema = z.object({
+  body: z.object({
+    
+    email: z
+      .string()
+      .email("Invalid email address")
+      .nonempty("Email is required"),
+    password: z.string().nonempty("Password is required"),
+   
+  }),
+});
+
+export const userValidator ={ userValidatorSchema, userLogInValidatorSchema };
